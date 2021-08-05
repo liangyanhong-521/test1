@@ -7,3 +7,11 @@ export function getList(params) {
     params
   })
 }
+
+export function postList(params) {
+  return request({
+    url: '/vue-admin-template/table/list',
+    method: 'post',
+    params
+  })
+}

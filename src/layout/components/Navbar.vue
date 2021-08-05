@@ -38,7 +38,7 @@ import Hamburger from '@/components/Hamburger'
 
 export default {
   components: {
-    Breadcrumb,
+    Breadcrumb, // 引入面包屑
     Hamburger
   },
   computed: {

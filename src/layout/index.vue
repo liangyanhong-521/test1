@@ -16,7 +16,7 @@ import { Navbar, Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
-  name: 'Layout',
+  name: 'Layout', // 改名字是其他文件导入时 import 该名字
   components: {
     Navbar,
     Sidebar,

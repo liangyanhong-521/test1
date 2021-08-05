@@ -9,13 +9,11 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">后台管理</h3>
+        <h3 class="title">后台管理系统登录</h3>
       </div>
 
       <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
+        <span class="svg-container">  <svg-icon icon-class="user" /></span>
         <el-input
           ref="username"
           v-model="loginForm.username"
@@ -61,90 +59,95 @@
 </template>
 
 <script>
-import { validUsername } from "@/utils/validate";
+import { validUsername } from '@/utils/validate'
 
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error("用户名错误！请输入正确的用户名"));
+        callback(new Error('用户名错误，请输入正确的用户名！'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error("密码错误！请输入正确的密码"));
+        callback(new Error('密码错误，请输入正确的密码！'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       loginForm: {
-        username: "admin",
-        password: "111111",
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [
-          { required: true, trigger: "blur", validator: validateUsername },
+          { required: true, trigger: 'blur', validator: validateUsername }
         ],
         password: [
-          { required: true, trigger: "blur", validator: validatePassword },
-        ],
+          { required: true, trigger: 'blur', validator: validatePassword }
+        ]
       },
       loading: false,
-      passwordType: "password",
-      redirect: undefined,
-    };
+      passwordType: 'password',
+      redirect: undefined
+    }
   },
   watch: {
     $route: {
-      handler: function (route) {
-        this.redirect = route.query && route.query.redirect;
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   methods: {
     showPwd() {
-      if (this.passwordType === "password") {
-        this.passwordType = "";
+      if (this.passwordType === 'password') {
+        this.passwordType = ''
       } else {
-        this.passwordType = "password";
+        this.passwordType = 'password'
       }
       this.$nextTick(() => {
-        this.$refs.password.focus();
-      });
+        this.$refs.password.focus()
+      })
     },
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          this.loading = true;
+          this.loading = true
+          // this.$store.dispatch(‘Login’, this.loginForm)来调取store里的user.js的login方法，从而要更新。
           this.$store
-            .dispatch("user/login", this.loginForm)
+            .dispatch('user/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || "/" });
-              this.loading = false;
+              this.$router.push({ path: this.redirect || '/' })
+              // 登录成功后重定向到首页,即页面的跳转。
+              this.loading = false
             })
             .catch(() => {
-              this.loading = false;
-            });
+              this.loading = false
+            })
         } else {
-          console.log("error submit!!");
-          return false;
+          this.$message({
+            message: '输入不合法，请重新输入！',
+            type: 'warning'
+          })
+          return false
         }
-      });
-    },
-  },
-};
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg: #283443;
+$bg: #7aaceb;
 $light_gray: #fff;
 $cursor: #fff;
 

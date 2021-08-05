@@ -2,16 +2,16 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',//用户登录后台接口地址的设计。
-    method: 'post',
+    url: '/user/login?username=' + data.username + '&password=' + data.password, // 用户登录后台接口地址的设计。
+    method: 'get',
     data
   })
 }
 
 export function getInfo(token) {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
+    url: '/user/login',
+    method: 'post',
     params: { token }
   })
 }

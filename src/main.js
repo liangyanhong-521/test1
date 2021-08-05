@@ -1,3 +1,4 @@
+// 整个程序的入口
 import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
@@ -11,9 +12,12 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+import axios from 'axios'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 
 /**
  * If you don't want to use mock-server
@@ -29,8 +33,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // set ElementUI lang to EN
-
+Vue.use(VueRouter)
+// 配置请求到根路径
+Vue.prototype.axios = axios
 Vue.use(ElementUI, { locale })
+Vue.use(Vuex)
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 

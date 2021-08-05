@@ -101,7 +101,7 @@ export default {
 
   mounted(){
     axios
-    .get("/.vscode/模拟数据/table.json")
+    .get("..../.vscode/模拟数据/table.json")
     .then(response => this.info=response.data)
   },
 

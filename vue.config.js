@@ -27,7 +27,7 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: false,
   productionSourceMap: false,
   // 前端服务器的设置信息
   devServer: {
@@ -36,8 +36,8 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
-    },
-    before: require('./mock/mock-server.js')
+    }
+    // before: require('./mock/mock-server.js') 用前端产生假数据来进行前后交互
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
