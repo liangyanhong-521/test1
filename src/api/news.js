@@ -2,21 +2,14 @@ import request from '@/utils/request'
 
 export function getList() {
   return request({
-    url: '/project/getAllProject',
+    url: '/news/getAllNews',
     method: 'get'
-  })
-}
-export function ListSelect(Data) {
-  return request({
-    url: '/project/getProjectById?id =' + Data.id,
-    method: 'get',
-    data: Data
   })
 }
 
 export function ListAdd(formData) {
   return request({
-    url: '/project/addProject',
+    url: '/news/addNews',
     method: 'post',
     headers: { 'Content-Type': 'multipart/form-data' },
     data: formData
@@ -24,7 +17,7 @@ export function ListAdd(formData) {
 }
 export function ListDelete(Data) {
   return request({
-    url: '/project/deleteProjectById?id=' + Data,
+    url: '/news/deleteNewsById?id=' + Data,
     method: 'delete',
     // headers: { 'Content-Type': 'multipart/form-data' },
     data: Data
@@ -32,7 +25,7 @@ export function ListDelete(Data) {
 }
 export function ListEdit(Data) {
   return request({
-    url: '/project/updateProject',
+    url: '/news/updateNews',
     method: 'put',
     headers: { 'Content-Type': 'multipart/form-data' },
     data: Data

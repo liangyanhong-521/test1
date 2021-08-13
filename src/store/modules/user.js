@@ -33,9 +33,10 @@ const actions = {
     return new Promise((resolve, reject) => {
       // 会触发src/api/user.js中的login进行axios请求后端获取token
       login(userInfo).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)// 存在vuex中
-        setToken(data.token)// 存在cookie中
+        // const { data } = response.data
+        console.log(response.token)
+        commit('SET_TOKEN', response.token)// 存在vuex中
+        setToken(response.token)// 存在cookie中
         resolve()
       }).catch(error => {
         reject(error)
@@ -47,7 +48,9 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
-        const { data } = response
+        console.log(getInfo(state.token))
+        console.log(getInfo())
+        const { data } = response.data
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
